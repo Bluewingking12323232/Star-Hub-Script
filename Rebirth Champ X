@@ -1,0 +1,345 @@
+--- REBIRTH SIM X
+
+--- LIBRARY
+local library = loadstring(game:GetObjects("rbxassetid://7657867786")[1].Source)()
+local Wait = library.subs.Wait 
+
+local SharkHub = library:CreateWindow({
+    Name = "Star Hub",
+    Themeable = {
+        Info = "Discord: discord.gg/",
+    }
+})
+
+--- TABS
+local GeneralTab = SharkHub:CreateTab({
+    Name = "General"
+})
+
+-- Values
+getgenv().autoClick = true
+getgenv().autoRebirth = true
+getgenv().autoSpin = true
+getgenv().autoChests = true
+getgenv().autoCraft = true
+getgenv().Egg = "Basic"
+getgenv().HatchEgg = false
+getgenv().Egg3 = "Basic"
+getgenv().HatchEgg3 = false
+
+
+--- DUMP FUNCTIONS
+function autoClick()
+    while getgenv().autoClick == true do
+        game:GetService("ReplicatedStorage").Events.Click3:FireServer()
+        wait(.001)
+    end
+end
+
+function autoRebirth()
+    while getgenv().autoRebirth == true do
+            game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(1)
+            game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(2)
+            game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(3)
+            game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(4)
+            game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(5)
+        wait(1)
+    end
+end
+
+function autoChests()
+    while getgenv().autoChests == true do
+        game:GetService("ReplicatedStorage").Events.Chest:FireServer("Spawn")
+        wait(1)
+     end
+end
+
+function autoSpin()
+    while getgenv().autoSpin == true do
+    game:GetService("ReplicatedStorage").Functions.Spin:InvokeServer()
+    wait()
+    end
+end
+
+function HatchEgg()
+    while getgenv().HatchEgg do
+        local args = {
+            [1] = getgenv().Egg,
+            [2] = "Single"
+        }
+
+        game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("Unbox"):InvokeServer(unpack(args))
+        wait(1)
+    end
+end
+
+function HatchEgg3()
+    while getgenv().HatchEgg3 do
+        local args = {
+            [1] = getgenv().Egg3,
+            [2] = "Triple"
+        }
+
+        game:GetService("ReplicatedStorage"):WaitForChild("Functions"):WaitForChild("Unbox"):InvokeServer(unpack(args))
+
+
+
+
+        
+        wait(1)
+    end
+end
+
+function autoCraft()
+    while getgenv().autoCraft == true do
+        game:GetService("ReplicatedStorage").Functions.Request:InvokeServer("CraftAll",{})
+        wait(1)
+     end
+end
+
+--- FARMING SECTIONS
+local FarmingSection = GeneralTab:CreateSection({
+    Name = "Farming"
+})
+
+--- SECTIONS
+FarmingSection:AddToggle({
+    Name = "Auto Click",
+    Flag = "Auto_Click",
+    Default = getgenv().autoClick,
+    Callback = function(value)
+        getgenv().autoClick = value
+        if value then
+            autoClick()
+        end
+    end
+})
+
+FarmingSection:AddToggle({
+    Name = "Auto Rebirth",
+    Flag = "Auto_Rebith",
+    Default = getgenv().autoRebirth,
+    Callback = function(value)
+        getgenv().autoRebirth = value
+        if value then
+            autoRebirth()
+        end
+    end
+})
+
+FarmingSection:AddToggle({
+    Name = "Auto Chests",
+    Flag = "Auto_Chests",
+    Default = getgenv().autoChests,
+    Callback = function(value)
+        getgenv().autoChests = value
+        if value then
+            autoChests()
+        end
+    end
+})
+
+FarmingSection:AddToggle({
+    Name = "Auto Craft",
+    Flag = "Auto_Craft",
+    Default = getgenv().autoCraft,
+    Callback = function(value)
+    getgenv().autoCraft = value
+        if value then
+            autoCraft()
+        end
+    end
+})
+
+FarmingSection:AddToggle({
+    Name = "Auto Spin",
+    Flag = "Auto_Spin",
+    Default = getgenv().autoSpin,
+    Callback = function(value)
+    getgenv().autoSpin = value
+        if value then
+            autoSpin()
+        end
+    end
+})
+
+
+
+
+
+
+local FarmingSection = GeneralTab:CreateSection({
+    Name = "Hatch Eggs",
+    Side = "Right"
+})
+
+FarmingSection:AddDropdown({
+    Name = "Select Egg",
+    Flag = "Price_Select2",
+    Value = getgenv().Egg,
+    Callback = function(value)
+        getgenv().Egg = value
+    end,
+    List = {
+        "Basic",
+        "Mythic",
+        "Forest",
+        "Beach",
+        "Atlantis",
+        "Desert",
+        "Winter",
+        "Volcano",
+        "Magma",
+        "Moon",
+        "Cyber",
+        "Magic",
+        "Heaven",
+        "Nuclear",
+        "Void",
+        "Spooky",
+        "Cave",
+        "Steampunk",
+        "Hell",
+        "King",
+        "Water",
+        "Lava",
+        "Space",
+        "Mars",
+        "Alien",
+        "Galaxy Forest",
+        "SpaceLab",
+        "Fantasy",
+        "Neon",
+        "Shadow",
+        "Destruction",
+        "Sun",
+        "Saturn",
+        "Hacker",
+        "Black Hole",
+        "Aqua",
+        "Axolotl",
+        "Underwater Lab",
+        "Pixel",
+        "Sea Cave",
+        "Ancient",
+        "Pirate",
+        "Exotic Island",
+        "Fishing Village",
+        "Ocean",
+        "Molten",
+        "Fantasy Spawn",
+        "Fantasy Jungle",
+        "Dragon",
+        "Fairy",
+        "Fantasy Glacier",
+        "Mystic Swamp",
+        "Haunted Castle",
+        "Rainbow World",
+        "Bee World",
+        "Time Spawn",
+        "Prehistoric",
+        "Moderator",
+        "Community",
+        "Troll",
+    }
+})
+
+FarmingSection:AddToggle({
+    Name = "Hatch Egg",
+    Flag = "Hatch_Egg2",
+    Default = getgenv().HatchEgg,
+    Callback = function(value)
+        getgenv().HatchEgg = value
+        if value then
+            HatchEgg(getgenv().Egg)
+        end
+    end
+})
+
+local FarmingSection = GeneralTab:CreateSection({
+    Name = "Hatch Eggs 3x",
+    Side = "Right"
+})
+
+FarmingSection:AddDropdown({
+    Name = "Select Egg",
+    Flag = "Price_Select",
+    Value = getgenv().Egg3,
+    Callback = function(value)
+        getgenv().Egg3 = value
+    end,
+    List = {
+        "Basic",
+        "Mythic",
+        "Forest",
+        "Beach",
+        "Atlantis",
+        "Desert",
+        "Winter",
+        "Volcano",
+        "Magma",
+        "Moon",
+        "Cyber",
+        "Magic",
+        "Heaven",
+        "Nuclear",
+        "Void",
+        "Spooky",
+        "Cave",
+        "Steampunk",
+        "Hell",
+        "King",
+        "Water",
+        "Lava",
+        "Space",
+        "Mars",
+        "Alien",
+        "Galaxy Forest",
+        "SpaceLab",
+        "Fantasy",
+        "Neon",
+        "Shadow",
+        "Destruction",
+        "Sun",
+        "Saturn",
+        "Hacker",
+        "Black Hole",
+        "Aqua",
+        "Axolotl",
+        "Underwater Lab",
+        "Pixel",
+        "Sea Cave",
+        "Ancient",
+        "Pirate",
+        "Exotic Island",
+        "Fishing Village",
+        "Ocean",
+        "Molten",
+        "Fantasy Spawn",
+        "Fantasy Jungle",
+        "Dragon",
+        "Fairy",
+        "Fantasy Glacier",
+        "Mystic Swamp",
+        "Haunted Castle",
+        "Rainbow World",
+        "Bee World",
+        "Time Spawn",
+        "Prehistoric",
+        "Moderator",
+        "Community",
+        "Troll",
+    }
+})
+
+FarmingSection:AddToggle({
+    Name = "Hatch Egg 3x",
+    Flag = "Hatch_Egg",
+    Default = getgenv().HatchEgg3,
+    Callback = function(value)
+        getgenv().HatchEgg3 = value
+        if value then
+            HatchEgg3(getgenv().Egg3)
+        end
+    end
+})
